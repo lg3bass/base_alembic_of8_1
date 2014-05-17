@@ -1,0 +1,60 @@
+NOTES
+
+12/30/2013
+-- Finally, Figured it out.  Hard Normals is the key!
+vbo_4.abc
+
+
+
+
+1/5/2014
+-- NOT WORKING. this mesh has the normals set to 50 degrees.  The mesh is splotchy.  Trying to find the minimum angle.
+vbo_4b_normalAngle30.abc
+-- Normal angle = 5 WORKS!
+vbo_4b_normalAngle5.abc
+-- Normal angle = 15 also WORKS!
+
+NOTE: I've noticed that when normals are set to Hard the file size doubles as noted in the forums. 
+
+vbo_4b_normalAngle15.abc
+-- This is a test where I tried to set the -noNormals flag to false.  supposedly this will force write the normals.
+vbo_4b_normalAngle50.abc 
+-- Also tried simply "unlock Normals(polyNormalPerVertex)" . No Dice.
+vbo_4b_polyNormalPerVertex.abc
+-- OK, Normal Angle = 20 has some promising results. 
+vbo_4b_normalAngle20.abc   <<--- THIS SEEMS TO BE THE MAGIC
+
+-- Did a normal threshold test on vbo_1. Set to 25. No difference visual from vbo_1_test.abc.  a little more anti alised.
+vbo_1_normalAngle25.abc
+
+-- Smoothing tests:
+-- Smooth level 2, Normal Angle=25. Crashes at time 1.5!
+vbo_1_smooth_normalAngle25.abc
+
+-- Smooth level 2, Normal Angle=20. Crashes at time 1.5!vbo_1_s2_n20.abc
+
+-- Smooth level 1, Normal Angle=20, Runs ok
+vbo_1_s1_n20.abc
+
+
+-- Smooth 1, N=25, normals break. at beginning.  vbo_4c_s1_n25.abc
+-- Here is that weird crash at 1.x time.
+vbo_4c_s1_n20.abc
+
+-- with nothing as a test.  Notice no normals.
+vbo_4c_nothing.abc
+
+-- with just setting the normal angle to 25.  HMMM. crashing?
+vbo_4c_n25.abc
+
+-- straight edges with setNormal.
+vbo_2_tri_n25.abc
+
+--original
+vbo_2_general_64_12-tri.abc
+
+--shoot the moon.  Looking Good.  4mb though.:(
+vbo_2_g64-12-quad-s25.abc
+
+-- Like Candy, 3.4mb. Smoothed x2, general[32,4], normalAngle=25.
+vbo_2_g32-4-quad-s2-n25.abc
